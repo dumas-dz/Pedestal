@@ -14,10 +14,10 @@ public class InsertSortSolution {
         if (array == null || array.length < 2) {
             return;
         }
-        for(int i = 1; i < array.length; i++){
+        for (int i = 1; i < array.length; i++) {
             int temp = array[i];
             int j = i - 1;
-            while(j >= 0 && array[j] > temp){
+            while (j >= 0 && array[j] > temp) {
                 array[j + 1] = array[j];
                 j--;
             }
@@ -29,5 +29,20 @@ public class InsertSortSolution {
         int[] arr = {3, 2, 4, 5};
         insertSort(arr);
         System.out.println("直接插入排序结果：" + Arrays.toString(arr));
+    }
+
+    public static void insertSortX(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            int temp = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > temp) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = temp;
+        }
     }
 }

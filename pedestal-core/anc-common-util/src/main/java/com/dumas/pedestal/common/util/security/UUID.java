@@ -1,7 +1,5 @@
 package com.dumas.pedestal.common.util.security;
 
-import com.sun.xml.internal.ws.util.UtilException;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -423,7 +421,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID> {
         try {
             return SecureRandom.getInstance("SHA1PRNG");
         } catch (NoSuchAlgorithmException e) {
-            throw new UtilException(e);
+            throw new RuntimeException(e);
         }
     }
 

@@ -2,7 +2,6 @@ package com.dumas.pedestal.common.util.security;
 
 import com.dumas.pedestal.common.util.Base64Util;
 import com.dumas.pedestal.common.util.ByteUtil;
-import com.sun.xml.internal.ws.util.UtilException;
 
 import java.nio.charset.Charset;
 import java.security.InvalidKeyException;
@@ -60,16 +59,16 @@ public final class MD5withRSAUtil {
             return result;
         } catch (NoSuchAlgorithmException e1) {
             log.error("签名算法不存在 [" + src + "]", e1);
-            throw new UtilException(e1);
+            throw new RuntimeException(e1);
         } catch (InvalidKeySpecException e2) {
             log.error("签名异常: 指定了非法的私钥 [" + src + "]", e2);
-            throw new UtilException(e2);
+            throw new RuntimeException(e2);
         } catch (InvalidKeyException e3) {
             log.error("签名异常: 私钥非法 [" + src + "]", e3);
-            throw new UtilException(e3);
+            throw new RuntimeException(e3);
         } catch (SignatureException e4) {
             log.error("签名异常 [" + src + "]", e4);
-            throw new UtilException(e4);
+            throw new RuntimeException(e4);
         }
     }
 
@@ -100,16 +99,16 @@ public final class MD5withRSAUtil {
             return validateResult;
         } catch (NoSuchAlgorithmException e1) {
             log.error("签名算法不存在 [" + src + "]", e1);
-            throw new UtilException(e1);
+            throw new RuntimeException(e1);
         } catch (InvalidKeySpecException e2) {
             log.error("签名验证异常: 指定了非法的私钥 [" + src + "]", e2);
-            throw new UtilException(e2);
+            throw new RuntimeException(e2);
         } catch (InvalidKeyException e3) {
             log.error("签名验证异常: 私钥非法 [" + src + "]", e3);
-            throw new UtilException(e3);
+            throw new RuntimeException(e3);
         } catch (SignatureException e4) {
             log.error("签名验证异常 [" + src + "]", e4);
-            throw new UtilException(e4);
+            throw new RuntimeException(e4);
         }
     }
 

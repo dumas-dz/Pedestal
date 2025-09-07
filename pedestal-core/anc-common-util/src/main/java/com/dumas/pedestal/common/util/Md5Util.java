@@ -1,7 +1,6 @@
 package com.dumas.pedestal.common.util;
 
 import com.alibaba.fastjson.JSONObject;
-import com.sun.xml.internal.ws.util.UtilException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -40,7 +39,7 @@ public class Md5Util {
             return new String(toHex(md5(s)).getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         } catch (Exception e) {
             log.error("not supported charset[" + s + "]", e);
-            throw new UtilException(e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -54,7 +53,7 @@ public class Md5Util {
             return new String(md5And2Hex(src)).toUpperCase();
         } catch (Exception e) {
             log.error("not supported charset[" + src + "]", e);
-            throw new UtilException(e);
+            throw new RuntimeException(e);
         }
     }
 

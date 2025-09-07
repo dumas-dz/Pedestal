@@ -78,7 +78,6 @@
         <joda.time.version>2.14.0</joda.time.version>
         <!--mybatis-->
         <mybatis.spring-boot.version>3.0.5</mybatis.spring-boot.version>
-        <persistence-api.version>2.2</persistence-api.version>
         <druid-starter.version>1.2.27</druid-starter.version>
         <mybatis-plus-boot-starter.version>3.5.14</mybatis-plus-boot-starter.version>
         <dynamic-datasource-spring-boot-starter.version>4.3.1</dynamic-datasource-spring-boot-starter.version>

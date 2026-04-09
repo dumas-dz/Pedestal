@@ -1,6 +1,6 @@
 package com.dumas.pedestal.framework.springboot.constant.enums;
 
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 /**
  * 业务操作类型

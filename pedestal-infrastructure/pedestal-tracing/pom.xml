@@ -22,9 +22,14 @@
             <groupId>com.dumas.anc</groupId>
             <artifactId>anc-framework-springboot</artifactId>
         </dependency>
+        <!-- Spring Cloud Sleuth 已在 2023.x 移除，替换为 Micrometer Tracing -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-tracing-bridge-brave</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.zipkin.reporter2</groupId>
+            <artifactId>zipkin-reporter-brave</artifactId>
         </dependency>
     </dependencies>
 

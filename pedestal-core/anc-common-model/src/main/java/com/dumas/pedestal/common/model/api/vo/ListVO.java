@@ -1,7 +1,6 @@
 package com.dumas.pedestal.common.model.api.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,17 +20,17 @@ import java.util.List;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ApiModel(value = "ListVO", description = "列表结果")
+@Schema(description = "列表结果")
 public class ListVO<T> {
     /**
      * 总条数
      */
-    @ApiModelProperty(value = "列表项总数")
+    @Schema(description = "列表项总数")
     Integer total;
     /**
      * 列表项
      */
-    @ApiModelProperty(value = "列表")
+    @Schema(description = "列表")
     List<T> list;
 
     public ListVO<T> ofEmpty() {

@@ -1,7 +1,6 @@
 package com.dumas.pedestal.common.model.api.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,27 +17,27 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ApiModel("ResponseVO")
+@Schema(description = "ResponseVO")
 public class R<T> {
     /**
      * 错误码
      */
-    @ApiModelProperty(name = "code", value = "错误码[0: 成功]", required = true)
+    @Schema(description = "错误码[0: 成功]", requiredMode = Schema.RequiredMode.REQUIRED)
     String code;
     /**
      * 错误信息
      */
-    @ApiModelProperty(name = "msg", value = "错误信息", required = true)
+    @Schema(description = "错误信息", requiredMode = Schema.RequiredMode.REQUIRED)
     String msg;
     /**
      * 是否调用成功
      */
-    @ApiModelProperty(name = "success", value = "是否调用成功", required = true)
+    @Schema(description = "是否调用成功", requiredMode = Schema.RequiredMode.REQUIRED)
     Boolean success;
 
     /**
      * 返回的数据
      */
-    @ApiModelProperty(name = "data", value = "返回的数据[调用失败时，为空]")
+    @Schema(description = "返回的数据[调用失败时，为空]")
     T data;
 }

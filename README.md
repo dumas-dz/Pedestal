@@ -1,61 +1,173 @@
 # Pedestal
-A Pre-research platform for learning java basics.
 
-## 目录结构
+Java 微服务基础架构平台，基于 Spring Boot 3.5 + Spring Cloud 2023 + Spring Cloud Alibaba 构建，提供开箱即用的微服务开发基础设施。
+
+## 技术栈
+
+| 类别 | 技术 | 版本 |
+|------|------|------|
+| 基础框架 | Spring Boot | 3.5.5 |
+| 微服务框架 | Spring Cloud | 2023.0.6 |
+| 注册/配置中心 | Spring Cloud Alibaba + Nacos | 2023.0.1.0 |
+| ORM | MyBatis-Plus | 3.5.14 |
+| 数据库 | MySQL | 9.4.0 |
+| 缓存 | Redis (Redisson) | - |
+| 消息队列 | RocketMQ | 5.3.3 |
+| API 文档 | SpringDoc OpenAPI | 2.8.8 |
+| 对象存储 | 阿里云 OSS / MinIO | - |
+| 链路追踪 | Micrometer Tracing + Zipkin | - |
+| 网关 | Spring Cloud Gateway | - |
+| 构建工具 | Maven | - |
+| JDK | Java 17 | 17+ |
+
+## 项目结构
+
 ```
 Pedestal
-├─pedestal-core    -- 核心依赖层
-│   ├─anc-common-model     -- 通用模型层
-│   ├─anc-common-util     -- 工具层
-│   ├─anc-framework-cache     -- 缓存框架层
-│   ├─anc-framework-config-center     -- 注册中心层
-│   ├─anc-framework-discovery     -- 发现中心层
-│   ├─anc-framework-fegin     -- fegin 调度中心层
-│   ├─anc-framework-logger     -- 日志层
-│   ├─anc-framework-mongodb     -- mongodb 层
-│   ├─anc-framework-mq     -- mq 消息层
-│   ├─anc-framework-mybatis     -- mybatis 层
-│   ├─anc-framework-springboot     -- springboot 层
-│   ├─anc-framework-springboot-web     -- web 层
-│   ├─anc-framework-swagger     -- 在线文档层
-│   ├─anc-framework-validation     -- 参数校验层
-│   ├─anc-parent     -- 全局包依赖管理
-├─pedestal-infrastructure      -- 基础设施层
-│   ├─pedestal-api-gateway     -- 网关
-│   ├─pedestal-config-center     -- 配置中心
-│   ├─pedestal-discovery     -- 发现中心
-│   ├─pedestal-inf-jobs-scheduler     -- 任务调度中心
-│   ├─pedestal-inf-oss     -- 对象存储中心
-│   ├─pedestal-inf-push-center     -- 推送中心
-│   ├─pedestal-inf-report-center     -- 上报中心
-│   ├─pedestal-tracing     -- 链路追踪
-├─pedestal-micro-service    -- 微服务模块
-│   ├─pedestal-ms-demo    -- 示例服务
-│   ├─pedestal-ms-alogrithm    -- 算法
-│   ├─pedestal-ms-crawler   -- 爬虫服务
-│   ├─pedestal-ms-patterns   -- 常用设计模式
-├─pedestal-share    -- 共享模块
-│   ├─share-api     -- 共享 api
-│   ├─share-component   -- 共享组件
-├─pedestal-tool     --工具模块
-│   ├─pedestal-tool-orm-generator   -- mbp 生成工具
-├─resource      -- 资源模块
-└─docs      -- 文档模块
+├── pedestal-core                    -- 核心依赖层
+│   ├── anc-parent                   -- 全局依赖版本管理 (BOM)
+│   ├── anc-common-model             -- 通用数据模型 (VO, DTO, Param)
+│   ├── anc-common-util              -- 通用工具类 (HTTP, 加解密, 编解码)
+│   ├── anc-framework-cache          -- 缓存框架封装 (Redis)
+│   ├── anc-framework-config-center  -- 配置中心客户端 (Nacos Config)
+│   ├── anc-framework-discovery      -- 服务发现客户端 (Nacos Discovery)
+│   ├── anc-framework-feign          -- Feign 远程调用封装
+│   ├── anc-framework-logger         -- 日志框架封装
+│   ├── anc-framework-mongodb        -- MongoDB 封装
+│   ├── anc-framework-mq             -- 消息队列封装 (RocketMQ)
+│   ├── anc-framework-mybatis        -- MyBatis-Plus 数据访问封装
+│   ├── anc-framework-springboot     -- Spring Boot 基础框架
+│   ├── anc-framework-springboot-web -- Web 层封装 (Controller 基类, 拦截器)
+│   ├── anc-framework-swagger        -- API 文档 (SpringDoc OpenAPI)
+│   └── anc-framework-validation     -- 参数校验封装
+│
+├── pedestal-infrastructure          -- 基础设施服务
+│   ├── pedestal-api-gateway         -- API 网关服务
+│   ├── pedestal-config-center       -- 配置中心服务
+│   ├── pedestal-discovery           -- 服务发现中心
+│   ├── pedestal-inf-jobs-scheduler  -- 任务调度中心
+│   ├── pedestal-inf-oss             -- 对象存储服务 (OSS + MinIO)
+│   ├── pedestal-inf-push-center     -- 消息推送中心
+│   ├── pedestal-inf-report-center   -- 数据上报中心
+│   └── pedestal-tracing             -- 链路追踪服务
+│
+├── pedestal-micro-service           -- 微服务业务模块
+│   ├── pedestal-ms-demo             -- 示例服务
+│   ├── pedestal-ms-algorithm        -- 算法服务
+│   ├── pedestal-ms-crawler          -- 爬虫服务
+│   └── pedestal-ms-patterns         -- 设计模式示例
+│
+├── pedestal-share                   -- 共享模块
+│   ├── share-api                    -- 共享 API 定义
+│   └── share-component              -- 共享组件
+│
+├── pedestal-tool                    -- 开发工具
+│   └── pedestal-tool-orm-generator  -- MyBatis-Plus 代码生成器
+│
+└── resource                         -- 资源文件
 ```
 
 ## 开发环境
-- [x] Java 开发工具包 1.8+
-- [x] IDE（Eclipse或IntelliJ IDEA）
-- [x] 项目管理工具 Maven
-- [x] 微服务注册中心/配置中心 Nacos
-- [x] 分布式缓存服务 Redis
-- [x] 消息中间件 RocketMq
-- [x] 数据库服务 Mysql
-- [x] 链路追踪工具 Zipkin
-- [x] 搜索引擎服务 ElasticSearch
+
+| 工具 | 版本要求 | 说明 |
+|------|---------|------|
+| JDK | 17+ | 必须，项目使用 Java 17 |
+| Maven | 3.8+ | 构建工具 |
+| MySQL | 8.0+ | 数据库 |
+| Redis | 6.0+ | 分布式缓存 |
+| Nacos | 2.x+ | 注册中心 / 配置中心 |
+| RocketMQ | 5.x+ | 消息中间件 |
+| IDE | IntelliJ IDEA / VS Code | 推荐使用 IDEA |
+
+### 快速开始
+
+```bash
+# 1. 克隆项目
+git clone https://github.com/dumas-dz/Pedestal.git
+cd Pedestal
+
+# 2. 设置 JDK 17
+export JAVA_HOME=/path/to/jdk-17
+
+# 3. 编译项目
+mvn compile
+
+# 4. 安装到本地仓库
+mvn install -DskipTests
+```
+
+## 模块依赖关系
+
+```
+anc-parent (BOM)
+  └── pedestatl-core
+        ├── anc-common-util
+        ├── anc-common-model
+        ├── anc-framework-springboot
+        │     └── anc-framework-springboot-web
+        ├── anc-framework-mybatis
+        ├── anc-framework-feign
+        ├── anc-framework-cache
+        ├── anc-framework-mq
+        ├── anc-framework-config-center
+        ├── anc-framework-discovery
+        ├── anc-framework-swagger
+        ├── anc-framework-validation
+        ├── anc-framework-logger
+        └── anc-framework-mongodb
+```
+
+## 核心模块说明
+
+### anc-common-util
+通用工具类集合，包含：
+- HTTP 客户端工具 (`HttpUtil`, `HTTPClientUtil`, `HttpsUtil`)
+- 加解密工具 (`AESUtil`, `DESUtil`, `RSAUtil`, `HMACSHA256`)
+- 编解码工具 (`CodecUtil`)
+- 验证码生成 (`VerifyCodeUtils`)
+
+### anc-common-model
+通用数据模型定义，包含：
+- 统一响应封装 `R<T>`
+- 分页参数 `PageParam`
+- 分页结果 `PageVO<T>`
+- 列表结果 `ListVO<T>`
+
+### anc-framework-swagger
+基于 SpringDoc OpenAPI 的 API 文档自动生成，支持通过配置开关控制：
+```yaml
+swagger:
+  doc:
+    enabled: true
+    title: 服务名称
+    desc: 服务描述
+```
+
+访问地址：`http://localhost:{port}/swagger-ui.html`
 
 ## 规约
-**开发规范** 和 **分支管理约定** 见内部文档
-[git-flow介绍](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow/)
-[gitflow分支说明](http://www.ruanyifeng.com/blog/2012/07/git.html)
-[gitflow分支总结](https://juejin.cn/post/6844903634006720526)
+
+### 开发规范
+- 遵循 [Google Java Style](https://google.github.io/styleguide/javaguide.html)
+- 使用 Lombok 减少样板代码
+- Controller 层不包含业务逻辑
+- Service 层使用接口 + 实现
+- 统一使用 `R<T>` 作为 API 响应封装
+
+### Git 工作流
+- 主分支：`main`
+- 开发分支：`develop`
+- 功能分支：`feature/{feature-name}`
+- 修复分支：`fix/{bug-name}`
+- 遵循 [Git Flow](https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow/) 分支管理
+
+### 提交规范
+```
+<type>: <description>
+
+type: feat | fix | refactor | docs | test | chore | perf | ci
+```
+
+## License
+
+Private Project - All Rights Reserved.

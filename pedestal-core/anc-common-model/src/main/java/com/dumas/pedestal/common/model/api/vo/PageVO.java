@@ -1,7 +1,6 @@
 package com.dumas.pedestal.common.model.api.vo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@ApiModel(value = "PageVO", description = "分页结果")
+@Schema(description = "分页结果")
 public class PageVO<T> {
     /**
      * 当前页
@@ -38,12 +37,12 @@ public class PageVO<T> {
     /**
      * 总条数
      */
-    @ApiModelProperty(value = "总条数")
+    @Schema(description = "总条数")
     private Long total;
     /**
      * 分页内容
      */
-    @ApiModelProperty(value = "页数据")
+    @Schema(description = "页数据")
     private List<T> list;
 
     public <R> PageVO<R> map(Function<? super T, ? extends R> converter) {

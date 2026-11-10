@@ -44,7 +44,7 @@
         <!-- messagePack -->
         <msgpack.version>0.6.12</msgpack.version>
         <!--工具-->
-        <jackson-databind.version>2.18.3</jackson-databind.version>
+        <jackson-databind.version>2.18.8</jackson-databind.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <commons-pool2.version>2.6.2</commons-pool2.version>
         <commons-collections4.version>4.4</commons-collections4.version>
@@ -54,7 +54,7 @@
         <commons-fileupload.version>1.6.0</commons-fileupload.version>
         <commons-text.version>1.7</commons-text.version>
         <commons-math3.version>3.6.1</commons-math3.version>
-        <google.guava.version>33.4.8-jre</google.guava.version>
+        <google.guava.version>33.7.2-jre</google.guava.version>
         <google-gson.version>2.13.1</google-gson.version>
         <gson.version>2.13.1</gson.version>
         <guava-retrying.version>2.0.0</guava-retrying.version>
